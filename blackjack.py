@@ -48,7 +48,7 @@ class Shoe:
             int: card from shoe
         """
         if self.numDecks == 0:
-            return self._single_suit[r.randint(0,len(self._single_suit))]
+            return self._single_suit[r.randint(0,len(self._single_suit - 1))]
         return self.deck.pop()
         
     def shuffle(self) -> None:
