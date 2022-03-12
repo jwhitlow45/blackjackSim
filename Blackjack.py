@@ -1,4 +1,5 @@
 from sys import maxsize
+from typing import List
 
 class Game:
     def __init__(self, numDecksInShoe: int, numPlayerStartingChips: int, maxBet: int, numChipsToWin: int = maxsize):
@@ -13,6 +14,7 @@ class Player:
             numChips (int): number of chips player has available for betting
         """
         self.numChips = numChips
+        self.count = 0
         
     def bet(self, betSize: int) -> int:
         """bets funds for player, fails if bet is larger than number of chips
@@ -28,6 +30,9 @@ class Player:
             return betSize
         else:
             return -1
+        
+    def decision(playerHand: List[int], dealerHand: List[int]) -> str:
+        pass
         
 
 class Shoe:
