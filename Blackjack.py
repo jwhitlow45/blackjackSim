@@ -51,8 +51,8 @@ class Shoe:
     def __init__(self, numDecks: int):
         
         # contains all cards for a single suit of cards
-        # A = 1, J = 11, Q = 12, K = 13
-        _single_suit = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+        # A = 11, J,Q,K = 10
+        _single_suit = [11,2,3,4,5,6,7,8,9,10,10,10,10]
         self.deck = []
         for i in range(numDecks*4):
             self.deck += _single_suit
