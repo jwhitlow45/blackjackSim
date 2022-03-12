@@ -17,7 +17,28 @@ class Game:
             playerHand.append(curShoe.deal())
             dealerHand.append(curShoe.deal())
             
-        
+        decision_policy = 1
+
+        while True:
+            # get soft and hard player hand counts
+            playerHardCount = self.calc_hard_count(playerHand)
+            playerSoftCount = self.calc_soft_count(playerHand)
+            decision: -1
+            if decision_policy == 1:
+                decision = Player.decision_policy_1(playerHardCount, playerSoftCount)
+            elif decision_policy == 2:
+                decision = Player.decision_policy_2(playerHardCount, playerSoftCount)
+            elif decision_policy == 4:
+                decision = Player.decision_policy_4()
+            elif decision_policy == 0:
+                decision = Player.decision_card_count(playerHand=playerHand,
+                                                      dealerCard=dealerHand[0],
+                                                      shoeCount=curShoe.count,
+                                                      hardCount=playerHardCount,
+                                                      softCount=playerSoftCount)
+            
+            if decision == 0:
+                break
             
     def calc_hard_count(hand: List[int]) -> int:
         """returns hard count (a=1) of given hand
