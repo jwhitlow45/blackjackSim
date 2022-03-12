@@ -9,7 +9,37 @@ class Game:
         
 class Player:
 
-    def decision(playerHand: List[int], dealerCard: int, count: int) -> int:
+    def decision_policy_1(cls, playerHand: List[int]) -> int:
+        """if your hand >= 17, stick, else hit
+
+        Args:
+            playerHand (List[int]): player's hand
+
+        Returns:
+            int: player decision (0 = stand, 1 = hit, 2 = split)
+        """
+        pass
+    
+    def decision_policy_2(cls, playerHand: List[int]) -> int:
+        """if your hand >= 17 and is hard, stick, else hit unless your hand = 21
+
+        Args:
+            playerHand (List[int]): player's hand
+
+        Returns:
+            int: player decision (0 = stand, 1 = hit, 2 = split)
+        """
+        pass
+    
+    def decision_policy_4(cls) -> int:
+        """always stand
+
+        Returns:
+            int: decision to stand (0 = stand)
+        """
+        return 0
+
+    def decision_card_count(cls, playerHand: List[int], dealerCard: int, count: int) -> int:
         """makes player decision based on player's hand, dealer's hand, and
         shoe count
 
@@ -21,7 +51,7 @@ class Player:
         Returns:
             int: player decision (0 = stand, 1 = hit, 2 = split)
         """
-        
+        pass
 
 class Shoe:
     def __init__(self, numDecks: int):
