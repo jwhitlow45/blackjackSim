@@ -7,10 +7,18 @@ class Game:
 
 class Player:
     def __init__(self, numChips: int):
+        """init Player class
+
+        Args:
+            numChips (int): number of chips player has available for betting
+        """
         self.numChips = numChips
         
-    def bet(betSize: int):
-        pass
+    def bet(self, betSize: int):
+        if betSize >= self.numChips:
+            return betSize
+        else:
+            return -1
         
 
 class Shoe:
