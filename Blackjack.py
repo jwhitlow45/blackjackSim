@@ -5,3 +5,11 @@ class Game:
         pass
     pass
 
+class Player:
+    def __init__(self, numChips: int):
+        self.numChips = numChips
+        
+    def bet(betSize: int):
+        pass
+        
+
