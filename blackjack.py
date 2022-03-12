@@ -2,37 +2,12 @@ from sys import maxsize
 from typing import List
 
 class Game:
-    def __init__(self, numDecksInShoe: int, numPlayerStartingChips: int, maxBet: int, numChipsToWin: int = maxsize):
+    def __init__(self, numDecksInShoe: int):
         self.numDecksInShoe = numDecksInShoe
-        self.numPlayerStartingChips = numPlayerStartingChips
-        self.maxBet = maxBet
-        self.numChipsToWin = numChipsToWin
         self.count = 0
         
 class Player:
-    def __init__(self, numChips: int):
-        """init Player class
 
-        Args:
-            numChips (int): number of chips player has available for betting
-        """
-        self.numChips = numChips
-        
-    def bet(self, betSize: int) -> int:
-        """bets funds for player, fails if bet is larger than number of chips
-
-        Args:
-            betSize (int): size of player bet
-
-        Returns:
-            int: size of bet, if bet too large returns -1
-        """
-        if betSize >= self.numChips:
-            self.numChips -= betSize
-            return betSize
-        else:
-            return -1
-        
     def decision(playerHand: List[int], dealerCard: int, count: int) -> int:
         """makes player decision based on player's hand, dealer's hand, and
         shoe count
@@ -56,6 +31,10 @@ class Shoe:
         self.deck = []
         for i in range(numDecks*4):
             self.deck += _single_suit
+            
+    def deal():
+        pass
+        
         
     
     def shuffle():
