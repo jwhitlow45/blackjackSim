@@ -74,13 +74,22 @@ class Shoe:
         # contains all cards for a single suit of cards
         # A = 11, J,Q,K = 10
         self._single_suit = [11,2,3,4,5,6,7,8,9,10,10,10,10]
-        self.deck = []
+        self.deck: List
         self.numDecks = numDecks
-        # populate deck
-        for i in range(numDecks*4):
-            self.deck += self._single_suit
+        # set up shoe
+        self.populate_shoe()
         # shuffle deck
         self.shuffle()
+        
+    def populate_shoe(self) -> None:
+        """remove all cards from shoe and place proper number of cards in shoe
+        based on number of decks in shoe
+        """
+        # clear out deck
+        self.deck = list()
+        # populate deck
+        for i in range(self.numDecks*4):
+            self.deck += self._single_suit
             
     def deal(self) -> int:
         """deal card from shoe, if number of decks is 0 draw from inf deck
