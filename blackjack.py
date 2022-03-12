@@ -42,7 +42,7 @@ class Shoe:
         self.shuffle()
             
     def deal(self) -> int:
-        """deal card from shoe
+        """deal card from shoe, if number of decks is 0 draw from inf deck
 
         Returns:
             int: card from shoe
@@ -51,5 +51,7 @@ class Shoe:
             return self._single_suit[r.randint(0,len(self._single_suit))]
         return self.deck.pop()
         
-    def shuffle(self):
+    def shuffle(self) -> None:
+        """shuffle deck in shoe
+        """
         r.shuffle(self.deck)
