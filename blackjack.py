@@ -7,6 +7,21 @@ class Game:
         self.numDecksInShoe = numDecksInShoe
         self.count = 0
         
+    def play():
+        numDecksInShoe = 12
+        
+    def update_count(card: int) -> None:
+        """updates current card count based on given card using hi-lo strategy
+
+        Args:
+            card (int): card to determine count update
+        """
+        if card > 9:
+            count -= 1
+        elif card < 7:
+            count += 1
+        
+        
 class Player:
     def decision_policy_1(cls, hardCount: int, softCount: int) -> int:
         """if your hand >= 17, stick, else hit
