@@ -6,8 +6,46 @@ class Game:
     def __init__(self, numDecksInShoe: int):
         self.numDecksInShoe = numDecksInShoe
         
-    
+    def play(self):
+        curShoe = Shoe(self.numDecksInShoe)
         
+        playerHand = []
+        dealerHand = []
+        
+        # deal two cards each to player and dealer
+        for i in range(2):
+            playerHand.append(curShoe.deal())
+            dealerHand.append(curShoe.deal())
+            
+        
+            
+    def calc_hard_count(hand: List[int]) -> int:
+        """returns hard count (a=1) of given hand
+
+        Args:
+            hand (List[int]): hand card
+
+        Returns:
+            int: hard count of given hand
+        """
+        handCount = 0
+        for card in hand:
+            if card == 11:
+                handCount += 1
+            else:
+                handCount += card
+        return handCount
+        
+    def calc_soft_count(hand: List[int]) -> int:
+        """returns soft count (a=11) of given hand
+
+        Args:
+            hand (List[int]): card hand
+
+        Returns:
+            int: soft count of given hand
+        """
+        return sum(hand)
         
         
 class Player:
