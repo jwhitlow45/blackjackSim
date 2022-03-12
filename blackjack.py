@@ -1,5 +1,5 @@
 from sys import maxsize
-from random import randint
+import random as r
 from typing import List
 
 class Game:
@@ -25,6 +25,11 @@ class Player:
 
 class Shoe:
     def __init__(self, numDecks: int):
+        """shoe containing cards to be dealt from
+
+        Args:
+            numDecks (int): number of decks in the shoe
+        """
         # contains all cards for a single suit of cards
         # A = 11, J,Q,K = 10
         self._single_suit = [11,2,3,4,5,6,7,8,9,10,10,10,10]
@@ -36,10 +41,8 @@ class Shoe:
     def deal(self):
         # 0 means inf deck so randomly pick from an inf deck
         if self.numDecks == 0:
-            return self._single_suit[randint(0,len(self._single_suit))]
+            return self._single_suit[r.randint(0,len(self._single_suit))]
         return self.deck.pop()
         
-        
-    
     def shuffle():
         pass
