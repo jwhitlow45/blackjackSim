@@ -8,11 +8,10 @@ class Game:
         self.count = 0
         
 class Player:
-    def decision_policy_1(cls, playerHand: List[int], hardCount: int, softCount: int) -> int:
+    def decision_policy_1(cls, hardCount: int, softCount: int) -> int:
         """if your hand >= 17, stick, else hit
 
         Args:
-            playerHand (List[int]): player's hand
             hardCount (int): value of player's hand (ace = 1)
             softCount (int): value of player's hand (ace = 11)
 
