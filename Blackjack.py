@@ -3,9 +3,12 @@ from typing import List
 
 class Game:
     def __init__(self, numDecksInShoe: int, numPlayerStartingChips: int, maxBet: int, numChipsToWin: int = maxsize):
-        pass
-    pass
-
+        self.numDecksInShoe = numDecksInShoe
+        self.numPlayerStartingChips = numPlayerStartingChips
+        self.maxBet = maxBet
+        self.numChipsToWin = numChipsToWin
+        self.count = 0
+        
 class Player:
     def __init__(self, numChips: int):
         """init Player class
@@ -14,7 +17,6 @@ class Player:
             numChips (int): number of chips player has available for betting
         """
         self.numChips = numChips
-        self.count = 0
         
     def bet(self, betSize: int) -> int:
         """bets funds for player, fails if bet is larger than number of chips
@@ -23,7 +25,7 @@ class Player:
             betSize (int): size of player bet
 
         Returns:
-            int: returns size of bet, if bet too large returns -1
+            int: size of bet, if bet too large returns -1
         """
         if betSize >= self.numChips:
             self.numChips -= betSize
@@ -31,8 +33,18 @@ class Player:
         else:
             return -1
         
-    def decision(playerHand: List[int], dealerHand: List[int]) -> str:
-        pass
+    def decision(playerHand: List[int], dealerCard: int, count: int) -> int:
+        """makes player decision based on player's hand, dealer's hand, and
+        shoe count
+
+        Args:
+            playerHand (List[int]): player's hand
+            dealerCard (List[int]): dealer's showing card
+            count (int): count of current shoe
+
+        Returns:
+            int: player decision (0 = stand, 1 = hit, 2 = split)
+        """
         
 
 class Shoe:
