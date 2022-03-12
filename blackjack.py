@@ -8,26 +8,29 @@ class Game:
         self.count = 0
         
 class Player:
-
-    def decision_policy_1(cls, playerHand: List[int]) -> int:
+    def decision_policy_1(cls, playerHand: List[int], hardCount: int, softCount: int) -> int:
         """if your hand >= 17, stick, else hit
 
         Args:
             playerHand (List[int]): player's hand
+            hardCount (int): value of player's hand (ace = 1)
+            softCount (int): value of player's hand (ace = 11)
 
         Returns:
-            int: player decision (0 = stand, 1 = hit, 2 = split)
+            int: player decision (0 = stand, 1 = hit)
         """
         pass
     
-    def decision_policy_2(cls, playerHand: List[int]) -> int:
+    def decision_policy_2(cls, playerHand: List[int], handCount: int, softCount: int) -> int:
         """if your hand >= 17 and is hard, stick, else hit unless your hand = 21
 
         Args:
             playerHand (List[int]): player's hand
+            hardCount (int): value of player's hand (ace = 1)
+            softCount (int): value of player's hand (ace = 11)
 
         Returns:
-            int: player decision (0 = stand, 1 = hit, 2 = split)
+            int: player decision (0 = stand, 1 = hit)
         """
         pass
     
@@ -39,14 +42,17 @@ class Player:
         """
         return 0
 
-    def decision_card_count(cls, playerHand: List[int], dealerCard: int, count: int) -> int:
+    def decision_card_count(cls, playerHand: List[int], dealerCard: int,
+                            shoeCount: int, hardCount: int, softCount: int) -> int:
         """makes player decision based on player's hand, dealer's hand, and
         shoe count
 
         Args:
             playerHand (List[int]): player's hand
             dealerCard (List[int]): dealer's showing card
-            count (int): count of current shoe
+            shoeCount (int): count of current shoe
+            hardCount (int): value of player's hand (ace = 1)
+            softCount (int): value of player's hand (ace = 11)
 
         Returns:
             int: player decision (0 = stand, 1 = hit, 2 = split)
