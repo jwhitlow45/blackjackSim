@@ -35,14 +35,21 @@ class Shoe:
         self._single_suit = [11,2,3,4,5,6,7,8,9,10,10,10,10]
         self.deck = []
         self.numDecks = numDecks
+        # populate deck
         for i in range(numDecks*4):
             self.deck += self._single_suit
+        # shuffle deck
+        self.shuffle()
             
-    def deal(self):
-        # 0 means inf deck so randomly pick from an inf deck
+    def deal(self) -> int:
+        """deal card from shoe
+
+        Returns:
+            int: card from shoe
+        """
         if self.numDecks == 0:
             return self._single_suit[r.randint(0,len(self._single_suit))]
         return self.deck.pop()
         
-    def shuffle():
-        pass
+    def shuffle(self):
+        r.shuffle(self.deck)
