@@ -24,18 +24,20 @@ class Player:
         else:
             return 1
     
-    def decision_policy_2(cls, playerHand: List[int], handCount: int, softCount: int) -> int:
+    def decision_policy_2(cls, hardCount: int, softCount: int) -> int:
         """if your hand >= 17 and is hard, stick, else hit unless your hand = 21
 
         Args:
-            playerHand (List[int]): player's hand
             hardCount (int): value of player's hand (ace = 1)
             softCount (int): value of player's hand (ace = 11)
 
         Returns:
             int: player decision (0 = stand, 1 = hit)
         """
-        pass
+        if hardCount >= 17 or softCount == 21:
+            return 0
+        else:
+            return 1
     
     def decision_policy_4(cls) -> int:
         """always stand
