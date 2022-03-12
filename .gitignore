@@ -14,3 +14,6 @@ __pypackages__/
 .venv
 env/
 venv/
+
+# VSCode
+.vscode
