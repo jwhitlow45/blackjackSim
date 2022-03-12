@@ -5,21 +5,9 @@ from typing import List
 class Game:
     def __init__(self, numDecksInShoe: int):
         self.numDecksInShoe = numDecksInShoe
-        self.count = 0
         
-    def play():
-        numDecksInShoe = 12
+    
         
-    def update_count(card: int) -> None:
-        """updates current card count based on given card using hi-lo strategy
-
-        Args:
-            card (int): card to determine count update
-        """
-        if card > 9:
-            count -= 1
-        elif card < 7:
-            count += 1
         
         
 class Player:
@@ -91,6 +79,8 @@ class Shoe:
         self._single_suit = [11,2,3,4,5,6,7,8,9,10,10,10,10]
         self.deck: List
         self.numDecks = numDecks
+        # count for card counting strategy
+        self.count = 0
         # set up shoe
         self.populate_shoe()
         # shuffle deck
@@ -113,8 +103,23 @@ class Shoe:
             int: card from shoe
         """
         if self.numDecks == 0:
-            return self._single_suit[r.randint(0,len(self._single_suit - 1))]
-        return self.deck.pop()
+            card = self._single_suit[r.randint(0,len(self._single_suit - 1))]
+            self.update_count(card)
+            return card
+        card = self.deck.pop()
+        self.update_count(card)
+        return card
+    
+    def update_count(card: int) -> None:
+        """updates current card count based on given card using hi-lo strategy
+
+        Args:
+            card (int): card to determine count update
+        """
+        if card > 9:
+            count -= 1
+        elif card < 7:
+            count += 1
         
     def shuffle(self) -> None:
         """shuffle deck in shoe
