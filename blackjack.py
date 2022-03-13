@@ -23,6 +23,10 @@ class Game:
             # get soft and hard player hand counts
             playerHardCount = self.calc_hard_count(playerHand)
             playerSoftCount = self.calc_soft_count(playerHand)
+            
+            if playerHardCount > 21:
+                break
+            
             decision: -1
             if decision_policy == 1:
                 decision = Player.decision_policy_1(playerHardCount, playerSoftCount)
@@ -38,6 +42,11 @@ class Game:
             
             if decision == 0:
                 break
+            elif decision == 1:
+                playerHand.append(curShoe.deal())
+            elif decision == 2:
+                # split into another two hands
+                print('split')
             
     def calc_hard_count(hand: List[int]) -> int:
         """returns hard count (a=1) of given hand
