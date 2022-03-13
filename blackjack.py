@@ -31,9 +31,8 @@ class Game:
             elif decision_policy == 4:
                 decision = Player.decision_policy_4()
             elif decision_policy == 0:
-                decision = Player.decision_card_count(playerHand=playerHand,
+                decision = Player.decision_basic_strategy(playerHand=playerHand,
                                                       dealerCard=dealerHand[0],
-                                                      shoeCount=curShoe.count,
                                                       hardCount=playerHardCount,
                                                       softCount=playerSoftCount)
             
@@ -109,22 +108,19 @@ class Player:
         """
         return 0
 
-    def decision_card_count(cls, playerHand: List[int], dealerCard: int,
-                            shoeCount: int, hardCount: int, softCount: int) -> int:
-        """makes player decision based on player's hand, dealer's hand, and
-        shoe count
+    def decision_basic_strategy(cls, playerHand: List[int], dealerCard: int,
+                                hardCount: int, softCount: int) -> int:
+        """makes player decision based on basic strategy of blackjack (best odds)
 
         Args:
             playerHand (List[int]): player's hand
             dealerCard (List[int]): dealer's showing card
-            shoeCount (int): count of current shoe
             hardCount (int): value of player's hand (ace = 1)
             softCount (int): value of player's hand (ace = 11)
 
         Returns:
             int: player decision (0 = stand, 1 = hit, 2 = split)
         """
-        pass
 
 class Shoe:
     def __init__(self, numDecks: int):
@@ -138,8 +134,6 @@ class Shoe:
         self._single_suit = [11,2,3,4,5,6,7,8,9,10,10,10,10]
         self.deck: List
         self.numDecks = numDecks
-        # count for card counting strategy
-        self.count = 0
         # set up shoe
         self.populate_shoe()
         # shuffle deck
@@ -162,23 +156,8 @@ class Shoe:
             int: card from shoe
         """
         if self.numDecks == 0:
-            card = self._single_suit[r.randint(0,len(self._single_suit - 1))]
-            self.update_count(card)
-            return card
-        card = self.deck.pop()
-        self.update_count(card)
-        return card
-    
-    def update_count(card: int) -> None:
-        """updates current card count based on given card using hi-lo strategy
-
-        Args:
-            card (int): card to determine count update
-        """
-        if card > 9:
-            count -= 1
-        elif card < 7:
-            count += 1
+            return self._single_suit[r.randint(0,len(self._single_suit - 1))]
+        return self.deck.pop()
         
     def shuffle(self) -> None:
         """shuffle deck in shoe
