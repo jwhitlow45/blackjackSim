@@ -34,19 +34,11 @@ class Game:
                 decision = Player.decision_policy_2(playerHardCount, playerSoftCount)
             elif decision_policy == 4:
                 decision = Player.decision_policy_4()
-            elif decision_policy == 0:
-                decision = Player.decision_basic_strategy(playerHand=playerHand,
-                                                      dealerCard=dealerHand[0],
-                                                      hardCount=playerHardCount,
-                                                      softCount=playerSoftCount)
             
             if decision == 0:
                 break
             elif decision == 1:
                 playerHand.append(curShoe.deal())
-            elif decision == 2:
-                # split into another two hands
-                print('split')
             
     def calc_hard_count(hand: List[int]) -> int:
         """returns hard count (a=1) of given hand
@@ -116,20 +108,6 @@ class Player:
             int: decision to stand (0 = stand)
         """
         return 0
-
-    def decision_basic_strategy(cls, playerHand: List[int], dealerCard: int,
-                                hardCount: int, softCount: int) -> int:
-        """makes player decision based on basic strategy of blackjack (best odds)
-
-        Args:
-            playerHand (List[int]): player's hand
-            dealerCard (List[int]): dealer's showing card
-            hardCount (int): value of player's hand (ace = 1)
-            softCount (int): value of player's hand (ace = 11)
-
-        Returns:
-            int: player decision (0 = stand, 1 = hit, 2 = split)
-        """
 
 class Shoe:
     def __init__(self, numDecks: int):
