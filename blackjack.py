@@ -26,11 +26,15 @@ class Game:
             playerHand.append(curShoe.deal())
             dealerHand.append(curShoe.deal())
             
-        decision_policy = 1
+        decision_policy = 2
 
         # player plays
         while True:
-            print('player hand:', playerHand, sum(playerHand))
+            if self.calc_soft_count(playerHand) <= 21:
+                print('player hand:', playerHand, self.calc_soft_count(playerHand))
+            else:
+                print('player hand', playerHand, self.calc_hard_count(playerHand))
+                
                 
             # get soft and hard player hand counts
             playerHardCount = self.calc_hard_count(playerHand)
