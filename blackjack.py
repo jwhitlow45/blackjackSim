@@ -22,9 +22,9 @@ class Game:
         dealerSoftCount = None
         
         # deal two cards each to player and dealer
-        # for i in range(2):
-        #     playerHand.append(curShoe.deal())
-        #     dealerHand.append(curShoe.deal())
+        for i in range(2):
+            playerHand.append(curShoe.deal())
+            dealerHand.append(curShoe.deal())
             
         decision_policy = 1
 
