@@ -6,11 +6,20 @@ class Game:
     def __init__(self, numDecksInShoe: int):
         self.numDecksInShoe = numDecksInShoe
         
-    def play(self):
+    def play(self) -> bool:
+        """game loop for playing blackjack
+
+        Returns:
+            bool: result of game, 0 if house wins, 1 if player wins
+        """
         curShoe = Shoe(self.numDecksInShoe)
         
         playerHand = []
         dealerHand = []
+        
+        playerHardCount = None
+        playerSoftCount = None
+        dealerSoftCount = None
         
         # deal two cards each to player and dealer
         for i in range(2):
@@ -19,15 +28,16 @@ class Game:
             
         decision_policy = 1
 
+        # player plays
         while True:
             # get soft and hard player hand counts
             playerHardCount = self.calc_hard_count(playerHand)
             playerSoftCount = self.calc_soft_count(playerHand)
             
             if playerHardCount > 21:
-                break
+                return False
             
-            decision: -1
+            decision = -1
             if decision_policy == 1:
                 decision = Player.decision_policy_1(playerHardCount, playerSoftCount)
             elif decision_policy == 2:
@@ -39,6 +49,29 @@ class Game:
                 break
             elif decision == 1:
                 playerHand.append(curShoe.deal())
+           
+        # dealer plays     
+        while True:
+            # get soft dealer hand count
+            dealerSoftCount = self.calc_soft_count(dealerHand)
+            
+            if dealerSoftCount > 21:
+                return True
+            if dealerSoftCount == 21:
+                return False
+            
+            # dealer decision
+            decision = Dealer.decision_policy_soft17(dealerHand)
+            
+            if decision == 0:
+                break
+            elif decision == 1:
+                dealerHand.append(curShoe.deal())
+        
+        # if dealer hand is less player wins
+        if dealerSoftCount < playerHardCount and dealerSoftCount < playerSoftCount:
+            return True
+        return False
             
     def calc_hard_count(hand: List[int]) -> int:
         """returns hard count (a=1) of given hand
@@ -108,6 +141,21 @@ class Player:
             int: decision to stand (0 = stand)
         """
         return 0
+    
+class Dealer:
+    def decision_policy_soft17(cls, softCount: int):
+        """decision made by dealer
+
+        Args:
+            softCount (int): value of dealer's hand (ace = 11)
+
+        Returns:
+            int: dealer decision (0 = stand, 1 = hit)
+        """
+        if softCount < 17:
+            return 0
+        return 1
+        
 
 class Shoe:
     def __init__(self, numDecks: int):
