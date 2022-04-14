@@ -6,7 +6,7 @@ class Game:
     def __init__(self, numDecksInShoe: int):
         self.numDecksInShoe = numDecksInShoe
         
-    def play(self) -> bool:
+    def play(self, decisionPolicy) -> bool:
         """game loop for playing blackjack
 
         Returns:
@@ -26,8 +26,6 @@ class Game:
             playerHand.append(curShoe.deal())
             dealerHand.append(curShoe.deal())
             
-        decision_policy = 2
-
         # player plays
         while True:
             if self.calc_soft_count(playerHand) <= 21:
@@ -44,11 +42,11 @@ class Game:
                 return False
             
             decision = -1
-            if decision_policy == 1:
+            if decisionPolicy == 1:
                 decision = Player.decision_policy_1(Player, playerHardCount, playerSoftCount)
-            elif decision_policy == 2:
+            elif decisionPolicy == 2:
                 decision = Player.decision_policy_2(Player, playerHardCount, playerSoftCount)
-            elif decision_policy == 4:
+            elif decisionPolicy == 4:
                 decision = Player.decision_policy_4(Player)
             
             if decision == 0:
