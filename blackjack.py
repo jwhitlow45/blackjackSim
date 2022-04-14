@@ -27,13 +27,7 @@ class Game:
             dealerHand.append(curShoe.deal())
             
         # player plays
-        while True:
-            if self.calc_soft_count(playerHand) <= 21:
-                print('player hand:', playerHand, self.calc_soft_count(playerHand))
-            else:
-                print('player hand', playerHand, self.calc_hard_count(playerHand))
-                
-                
+        while True:                
             # get soft and hard player hand counts
             playerHardCount = self.calc_hard_count(playerHand)
             playerSoftCount = self.calc_soft_count(playerHand)
@@ -56,8 +50,6 @@ class Game:
            
         # dealer plays     
         while True:
-            print('dealer hand:', dealerHand, sum(dealerHand))
-            
             # get soft dealer hand count
             dealerSoftCount = self.calc_soft_count(dealerHand)
             
@@ -205,7 +197,7 @@ class Shoe:
             int: card from shoe
         """
         if self.numDecks == 0:
-            return self._single_suit[r.randint(0,len(self._single_suit - 1))]
+            return self._single_suit[r.randint(0,len(self._single_suit) - 1)]
         return self.deck.pop()
         
     def shuffle(self) -> None:
