@@ -3,13 +3,13 @@ import blackjack as bl
 Decision policies:
 1.= if your hand >= 17, stick, else hit
 2 = if your hand >= 17 and is hard, stick, else hit unless your hand = 21
-4 = always stand
+3 = always stand
 """
 
 
 def main():
     numDecksList = [0, 1]
-    playerPolicyList = [1, 2, 4]
+    playerPolicyList = [1, 2, 3]
     numGames = 1000000
 
     # store results to write to csv at end

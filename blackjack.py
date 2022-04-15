@@ -40,8 +40,10 @@ class Game:
                 decision = Player.decision_policy_1(Player, playerHardCount, playerSoftCount)
             elif decisionPolicy == 2:
                 decision = Player.decision_policy_2(Player, playerHardCount, playerSoftCount)
+            elif decisionPolicy == 3:
+                decision = Player.decision_policy_3(Player)
             elif decisionPolicy == 4:
-                decision = Player.decision_policy_4(Player)
+                decision = Player.decision_policy_4(playerHand, playerHardCount, playerSoftCount, dealerHand[0])
             
             if decision == 0:
                 break
@@ -140,13 +142,48 @@ class Player:
         else:
             return 1
     
-    def decision_policy_4(cls) -> int:
+    def decision_policy_3(cls) -> int:
         """always stand
 
         Returns:
             int: decision to stand (0 = stand)
         """
         return 0
+    
+    def decision_policy_4(cls, hardCount: int, softCount: int, dealerUpCard: int) -> int:
+        """set stop value at 19 if dealer up card is an ace or face card else
+        set stop value at 17
+
+        Args:
+            hardCount (int): value of player's hand (ace = 1)
+            softCount (int): value of player's hand (ace = 11)
+            dealerUpCard (int): dealers card that player can see
+
+        Returns:
+            int: player decision (0 = stand, 1 = hit)
+        """
+        
+        stopValue: int
+        if dealerUpCard == 10 or dealerUpCard == 11:
+            stopValue = 19
+        else:
+            stopValue = 17
+            
+        if softCount > 21:
+            if hardCount >= stopValue:
+                return 0
+            else:
+                return 1
+        else:
+            if softCount >= stopValue:
+                return 0
+            else:
+                return 1
+        
+        
+        
+
+        
     
 class Dealer:
     def decision_policy_soft17(cls, softCount: int):
