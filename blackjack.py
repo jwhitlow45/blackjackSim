@@ -43,8 +43,10 @@ class Game:
             elif decisionPolicy == 3:
                 decision = Player.decision_policy_3(Player)
             elif decisionPolicy == 4:
-                decision = Player.decision_policy_4(playerHand, playerHardCount, playerSoftCount, dealerHand[0])
-            
+                decision = Player.decision_policy_4(Player, playerHardCount, playerSoftCount, dealerHand[0])
+            elif decisionPolicy == 5:
+                decision = Player.decision_policy_5(Player, playerHand)
+                
             if decision == 0:
                 break
             elif decision == 1:
@@ -180,7 +182,18 @@ class Player:
             else:
                 return 1
         
+    def decision_policy_5(cls, playerHand: List[int]) -> int:
+        """hit once then stand
+        Args:
+            playerHand (List[int]): list of cards in player's hand
+
+        Returns:
+            int: player decision (0 = stand, 1 = hit)
+        """
         
+        if len(playerHand) > 2:
+            return 0
+        return 1
         
 
         
